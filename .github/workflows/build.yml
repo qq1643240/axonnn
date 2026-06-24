@@ -7,9 +7,12 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: macos-13
     
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +36,7 @@ jobs:
           
       - name: Build Package
         run: |
+          export THEOS=~/theos
           make clean
           make package FINALPACKAGE=1
           
