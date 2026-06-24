@@ -6,6 +6,7 @@
 @property (nonatomic, retain) UICollectionView *collectionView;
 @property (nonatomic, retain) UICollectionViewFlowLayout *collectionViewLayout;
 @property (nonatomic, retain) NSString *selectedBundleIdentifier;
+@property (nonatomic, retain) UIPanGestureRecognizer *panGesture;
 
 @property (nonatomic, assign) BOOL hapticFeedback;
 @property (nonatomic, assign) BOOL badgesEnabled;
@@ -21,8 +22,14 @@
 @property (nonatomic, assign) NSInteger iconStyle;
 @property (nonatomic, assign) CGFloat spacing;
 
+@property (nonatomic, assign) NSInteger swipeUpAction;
+@property (nonatomic, assign) NSInteger swipeDownAction;
+@property (nonatomic, assign) NSInteger swipeLeftAction;
+@property (nonatomic, assign) NSInteger swipeRightAction;
+
 -(void)refresh;
 -(void)reset;
+-(void)handlePanGesture:(UIPanGestureRecognizer *)gesture;
 
 /* Compatibility stuff. */
 -(void)setContentHost:(id)arg1 ;

@@ -55,6 +55,17 @@
   "CENTER" = "Center";
   "RIGHT" = "Right";
 
+  "GESTURES" = "Gestures";
+  "GESTURES_INFO" = "Assign actions to swipe gestures on the Axon view.";
+  "SWIPE_UP" = "Swipe Up";
+  "SWIPE_DOWN" = "Swipe Down";
+  "SWIPE_LEFT" = "Swipe Left";
+  "SWIPE_RIGHT" = "Swipe Right";
+  "CLEAR_ALL" = "Clear All Notifications";
+  "DISMISS" = "Dismiss Notification Center";
+  "CLEAR_SELECTED" = "Clear Selected App";
+  "TOGGLE_HISTORY" = "Toggle Notification History";
+
   "CREDITS_1" = "Ahmed Bousrih";
   "CREDITS_1_INFO" = "Designed the icon and banners.";
 

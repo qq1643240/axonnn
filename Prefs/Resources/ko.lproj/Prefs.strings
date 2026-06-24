@@ -55,6 +55,17 @@
   "CENTER" = "중앙";
   "RIGHT" = "오른쪽";
 
+  "GESTURES" = "제스처";
+  "GESTURES_INFO" = "Axon 뷰에서 스와이프 제스처에 동작을 할당합니다.";
+  "SWIPE_UP" = "위로 스와이프";
+  "SWIPE_DOWN" = "아래로 스와이프";
+  "SWIPE_LEFT" = "왼쪽으로 스와이프";
+  "SWIPE_RIGHT" = "오른쪽으로 스와이프";
+  "CLEAR_ALL" = "모든 알림 지우기";
+  "DISMISS" = "알림 센터 닫기";
+  "CLEAR_SELECTED" = "선택한 앱 지우기";
+  "TOGGLE_HISTORY" = "알림 기록 토글";
+
   "CREDITS_1" = "Ahmed Bousrih";
   "CREDITS_1_INFO" = "아이콘과 배너 디자인";
 

@@ -1,0 +1,43 @@
+name: Build Tweak
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Theos
+        run: |
+          export THEOS=~/theos
+          git clone --recursive https://github.com/theos/theos.git $THEOS
+          echo "THEOS=$THEOS" >> $GITHUB_ENV
+          
+      - name: Download iOS SDK
+        run: |
+          cd $THEOS/sdks
+          curl -LO https://github.com/theos/sdks/releases/download/16.2/iOS16.2.sdk.tar.xz
+          tar -xf iOS16.2.sdk.tar.xz
+          rm iOS16.2.sdk.tar.xz
+          
+      - name: Install ldid
+        run: |
+          brew install ldid
+          
+      - name: Build Package
+        run: |
+          make clean
+          make package FINALPACKAGE=1
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Axon-deb
+          path: ./packages/*.deb

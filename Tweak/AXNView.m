@@ -12,6 +12,11 @@
     self.badgesShowBackground = YES;
     self.showingLatestRequest = NO;
     self.list = [NSMutableArray new];
+    
+    self.swipeUpAction = 0;
+    self.swipeDownAction = 0;
+    self.swipeLeftAction = 0;
+    self.swipeRightAction = 0;
 
     self.collectionViewLayout = [[UICollectionViewFlowLayout alloc] init];
     self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -33,7 +38,83 @@
         [self.collectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
     ]];
 
+    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    self.panGesture.delegate = self;
+    [self addGestureRecognizer:self.panGesture];
+
     return self;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void)handlePanGesture:(UIPanGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [gesture velocityInView:self];
+        CGFloat verticalThreshold = 50;
+        CGFloat horizontalThreshold = 50;
+        
+        BOOL isVertical = fabs(velocity.y) > fabs(velocity.x);
+        
+        if (isVertical) {
+            if (velocity.y < -verticalThreshold) {
+                [self performSwipeAction:self.swipeUpAction];
+            } else if (velocity.y > verticalThreshold) {
+                [self performSwipeAction:self.swipeDownAction];
+            }
+        } else {
+            if (velocity.x < -horizontalThreshold) {
+                [self performSwipeAction:self.swipeLeftAction];
+            } else if (velocity.x > horizontalThreshold) {
+                [self performSwipeAction:self.swipeRightAction];
+            }
+        }
+    }
+}
+
+- (void)performSwipeAction:(NSInteger)action {
+    switch (action) {
+        case 1:
+            [self clearAllNotifications];
+            break;
+        case 2:
+            [self dismissNotificationCenter];
+            break;
+        case 3:
+            [self clearSelectedAppNotifications];
+            break;
+        case 4:
+            [self toggleNotificationHistory];
+            break;
+    }
+}
+
+- (void)clearAllNotifications {
+    if (self.hapticFeedback) AudioServicesPlaySystemSound(1520);
+    [[AXNManager sharedInstance] clearAll];
+    [self refresh];
+}
+
+- (void)dismissNotificationCenter {
+    if (self.hapticFeedback) AudioServicesPlaySystemSound(1519);
+    UIApplication *app = [UIApplication sharedApplication];
+    if ([app respondsToSelector:@selector(dismissNotificationCenter)]) {
+        [app performSelector:@selector(dismissNotificationCenter)];
+    }
+}
+
+- (void)clearSelectedAppNotifications {
+    if (self.selectedBundleIdentifier && self.hapticFeedback) {
+        AudioServicesPlaySystemSound(1520);
+        [[AXNManager sharedInstance] clearAll:self.selectedBundleIdentifier];
+        [self refresh];
+    }
+}
+
+- (void)toggleNotificationHistory {
+    if (self.hapticFeedback) AudioServicesPlaySystemSound(1519);
+    [[AXNManager sharedInstance] revealNotificationHistory:![[AXNManager sharedInstance].view showingLatestRequest]];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -104,14 +185,11 @@
     cell.selectionStyle = self.selectionStyle;
     cell.addBlur = self.addBlur;
     cell.selected = [self.selectedBundleIdentifier isEqualToString:cell.bundleIdentifier];
-    // cell.badgesEnabled = self.badgesEnabled;
     cell.style = self.style;
 
     if (cell.selected) {
         [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
-
-    // if (self.style == 5) cell.alpha = 0.5;
 
     return cell;
 }
@@ -255,8 +333,6 @@
     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     [[AXNManager sharedInstance].sbclvc _setListHasContent:([self.list count] > 0)];
 }
-
-/* Compatibility stuff to keep it from safe moding. */
 
 -(void)setContentHost:(id)arg1 {}
 -(void)setSizeToMimic:(CGSize)arg1 {}

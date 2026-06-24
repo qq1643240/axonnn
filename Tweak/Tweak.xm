@@ -21,6 +21,10 @@ NSInteger autoLayout;
 NSInteger yAxis;
 NSInteger location;
 CGFloat spacing;
+NSInteger swipeUpAction;
+NSInteger swipeDownAction;
+NSInteger swipeLeftAction;
+NSInteger swipeRightAction;
 
 void updateViewConfiguration() {
     if (initialized && [AXNManager sharedInstance].view) {
@@ -36,6 +40,10 @@ void updateViewConfiguration() {
         [AXNManager sharedInstance].view.spacing = spacing;
         [AXNManager sharedInstance].view.alignment = alignment;
         [AXNManager sharedInstance].view.iconStyle = iconStyle;
+        [AXNManager sharedInstance].view.swipeUpAction = swipeUpAction;
+        [AXNManager sharedInstance].view.swipeDownAction = swipeDownAction;
+        [AXNManager sharedInstance].view.swipeLeftAction = swipeLeftAction;
+        [AXNManager sharedInstance].view.swipeRightAction = swipeRightAction;
     }
 }
 
@@ -130,7 +138,7 @@ void updateViewConfiguration() {
 /* Replace notification management functions with our logic. */
 
 -(bool)insertNotificationRequest:(NCNotificationRequest *)req forCoalescedNotification:(id)arg2 {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
     [[AXNManager sharedInstance] insertNotificationRequest:req];
     [[AXNManager sharedInstance].view refresh];
 
@@ -147,7 +155,7 @@ void updateViewConfiguration() {
 }
 
 -(bool)removeNotificationRequest:(NCNotificationRequest *)req forCoalescedNotification:(id)arg2 {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
 
     NSString *identifier = [[req notificationIdentifier] copy];
 
@@ -168,7 +176,7 @@ void updateViewConfiguration() {
 }
 
 -(bool)modifyNotificationRequest:(NCNotificationRequest *)req forCoalescedNotification:(id)arg2 {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
 
     NSString *identifier = [[req notificationIdentifier] copy];
 
@@ -262,7 +270,7 @@ void updateViewConfiguration() {
     return self;
 }
 -(bool)insertNotificationRequest:(NCNotificationRequest *)req {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
     [[AXNManager sharedInstance] insertNotificationRequest:req];
     [[AXNManager sharedInstance].view refresh];
 
@@ -279,7 +287,7 @@ void updateViewConfiguration() {
 }
 
 -(bool)removeNotificationRequest:(NCNotificationRequest *)req {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
 
     NSString *identifier = [[req notificationIdentifier] copy];
 
@@ -300,7 +308,7 @@ void updateViewConfiguration() {
 }
 
 -(bool)modifyNotificationRequest:(NCNotificationRequest *)req {
-    if (self.axnAllowChanges) return %orig;     // This condition is true when Axon is updating filtered notifications for display.
+    if (self.axnAllowChanges) return %orig;
 
     NSString *identifier = [[req notificationIdentifier] copy];
 
@@ -528,10 +536,6 @@ void updateViewConfiguration() {
 %end
 
 
-
-
-
-
 %group AxonHorizontal
 
 %hook SBDashBoardCombinedListViewController
@@ -730,6 +734,10 @@ void loadPrefs() {
   location = [prefs[@"location"] intValue] ?: 0;
   if(autoLayout == false) location = 1;
   yAxis = [prefs[@"yAxis"] intValue] ?: 0;
+  swipeUpAction = [prefs[@"SwipeUpAction"] intValue] ?: 0;
+  swipeDownAction = [prefs[@"SwipeDownAction"] intValue] ?: 0;
+  swipeLeftAction = [prefs[@"SwipeLeftAction"] intValue] ?: 0;
+  swipeRightAction = [prefs[@"SwipeRightAction"] intValue] ?: 0;
   if(style > 5) style = 4;
   updateViewConfiguration();
 }

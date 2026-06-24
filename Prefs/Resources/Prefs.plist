@@ -4,22 +4,6 @@
 <dict>
 	<key>items</key>
 	<array>
-		<!-- <dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>label</key>
-			<string>Nepeta</string>
-			<key>user</key>
-			<string>NepetaDev</string>
-		</dict>
-		<dict>
-			<key>cellClass</key>
-			<string>HBTwitterCell</string>
-			<key>label</key>
-			<string>Baw Appie</string>
-			<key>user</key>
-			<string>BawAppie</string>
-		</dict> -->
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
@@ -209,8 +193,6 @@
 			<string>me.nepeta.axon/ReloadPrefs</string>
 		</dict>
 
-
-
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -245,7 +227,6 @@
 			<key>PostNotification</key>
 			<string>me.nepeta.axon/ReloadPrefs</string>
 		</dict>
-
 
 		<dict>
 			<key>cell</key>
@@ -449,7 +430,145 @@
 			<string>me.nepeta.axon/ReloadPrefs</string>
 		</dict>
 
-		<!-- Credits -->
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>GESTURES</string>
+			<key>footerText</key>
+			<string>GESTURES_INFO</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>detail</key>
+			<string>AXNListItemsController</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>me.nepeta.axon</string>
+			<key>label</key>
+			<string>SWIPE_UP</string>
+			<key>key</key>
+			<string>SwipeUpAction</string>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>NONE</string>
+				<string>CLEAR_ALL</string>
+				<string>DISMISS</string>
+				<string>CLEAR_SELECTED</string>
+				<string>TOGGLE_HISTORY</string>
+			</array>
+			<key>PostNotification</key>
+			<string>me.nepeta.axon/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>detail</key>
+			<string>AXNListItemsController</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>me.nepeta.axon</string>
+			<key>label</key>
+			<string>SWIPE_DOWN</string>
+			<key>key</key>
+			<string>SwipeDownAction</string>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>NONE</string>
+				<string>CLEAR_ALL</string>
+				<string>DISMISS</string>
+				<string>CLEAR_SELECTED</string>
+				<string>TOGGLE_HISTORY</string>
+			</array>
+			<key>PostNotification</key>
+			<string>me.nepeta.axon/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>detail</key>
+			<string>AXNListItemsController</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>me.nepeta.axon</string>
+			<key>label</key>
+			<string>SWIPE_LEFT</string>
+			<key>key</key>
+			<string>SwipeLeftAction</string>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>NONE</string>
+				<string>CLEAR_ALL</string>
+				<string>DISMISS</string>
+				<string>CLEAR_SELECTED</string>
+				<string>TOGGLE_HISTORY</string>
+			</array>
+			<key>PostNotification</key>
+			<string>me.nepeta.axon/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>detail</key>
+			<string>AXNListItemsController</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>defaults</key>
+			<string>me.nepeta.axon</string>
+			<key>label</key>
+			<string>SWIPE_RIGHT</string>
+			<key>key</key>
+			<string>SwipeRightAction</string>
+			<key>validValues</key>
+			<array>
+				<integer>0</integer>
+				<integer>1</integer>
+				<integer>2</integer>
+				<integer>3</integer>
+				<integer>4</integer>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>NONE</string>
+				<string>CLEAR_ALL</string>
+				<string>DISMISS</string>
+				<string>CLEAR_SELECTED</string>
+				<string>TOGGLE_HISTORY</string>
+			</array>
+			<key>PostNotification</key>
+			<string>me.nepeta.axon/ReloadPrefs</string>
+		</dict>
+
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
@@ -458,16 +577,6 @@
 			<key>isStaticText</key>
 			<true/>
 		</dict>
-		<!-- <dict>
-			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
-			<key>label</key>
-			<string>CREDITS_1</string>
-			<key>subtitle</key>
-			<string>CREDITS_1_INFO</string>
-			<key>url</key>
-			<string>https://twitter.com/bossgfx_</string>
-		</dict> -->
 		<dict>
 			<key>detail</key>
 			<string>AXNDebugController</string>
@@ -484,16 +593,6 @@
 			<key>label</key>
 			<string>RESPRING</string>
 		</dict>
-		<!-- <dict>
-			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
-			<key>label</key>
-			<string>GitHub</string>
-			<key>subtitle</key>
-			<string>SOURCE_CODE</string>
-			<key>url</key>
-			<string>https://github.com/Baw-Appie/Axon</string>
-		</dict> -->
 	</array>
 	<key>title</key>
 	<string>Axon</string>
