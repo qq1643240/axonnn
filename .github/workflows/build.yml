@@ -17,48 +17,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install dependencies
+      - name: Install Theos
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential git curl wget perl clang lld llvm \
             libxml2-dev libssl-dev zlib1g-dev dpkg-dev unzip xz-utils \
-            libbz2-dev liblzma-dev fakeroot rsync sed grep
+            libbz2-dev liblzma-dev fakeroot rsync sed grep lzma-dev
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
           
-      - name: Install Theos
-        run: |
-          export THEOS=$HOME/theos
-          git clone --recursive https://github.com/theos/theos.git $THEOS
-          echo "THEOS=$THEOS" >> $GITHUB_ENV
-          
-      - name: Install toolchain
-        run: |
-          cd $THEOS/toolchain
-          curl -LO https://github.com/sbingner/llvm-project/releases/latest/download/linux-ios-arm64e-clang-toolchain.tar.lzma
-          TMP=$(mktemp -d)
-          tar -xvf linux-ios-arm64e-clang-toolchain.tar.lzma -C $TMP
-          mv $TMP/* $THEOS/toolchain/linux
-          rm -rf $TMP linux-ios-arm64e-clang-toolchain.tar.lzma
-          ls linux/iphone/bin/clang
-          
-      - name: Install iOS SDK
+      - name: Install iOS SDK 16.2
         run: |
           cd $THEOS/sdks
           curl -LO https://github.com/theos/sdks/releases/download/16.2/iOS16.2.sdk.tar.xz
           tar -xf iOS16.2.sdk.tar.xz
           rm iOS16.2.sdk.tar.xz
-          ls -d iOS16.2.sdk
-          
-      - name: Install ldid
-        run: |
-          cd $THEOS/bin
-          curl -LO https://github.com/theos/ldid/releases/download/v2.1.5-procur/ldid_linux_x86_64
-          mv ldid_linux_x86_64 ldid
-          chmod +x ldid
-          ./ldid --version
+          ls -la
           
       - name: Build Package
         run: |
-          export PATH="$THEOS/bin:$PATH"
           make clean
           make package FINALPACKAGE=1
           
