@@ -44,7 +44,12 @@ jobs:
       - name: Build Package
         run: |
           make clean
-          make package FINALPACKAGE=1
+          make package FINALPACKAGE=1 THEOS="$HOME/theos" 2>&1 | tee build.log
+          
+      - name: Print build log on failure
+        if: failure()
+        run: |
+          cat build.log
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
