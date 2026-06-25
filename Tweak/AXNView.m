@@ -218,11 +218,19 @@
     [[AXNManager sharedInstance] showNotificationRequestsForBundleIdentifier:cell.bundleIdentifier];
     self.showingLatestRequest = NO;
 
-    [[NSClassFromString(@"SBIdleTimerGlobalCoordinator") sharedInstance] resetIdleTimer];
+    id idleCoordinator = [NSClassFromString(@"SBIdleTimerGlobalCoordinator") sharedInstance];
+    if (idleCoordinator && [idleCoordinator respondsToSelector:@selector(resetIdleTimer)]) {
+        [idleCoordinator resetIdleTimer];
+    }
     [[AXNManager sharedInstance] revealNotificationHistory:YES];
 
     if (self.collectionViewLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
-        if([[AXNManager sharedInstance].clvc respondsToSelector:@selector(collectionView)]) [[[AXNManager sharedInstance].clvc collectionView] _scrollToTopIfPossible:YES];
+        if([[AXNManager sharedInstance].clvc respondsToSelector:@selector(collectionView)]) {
+            UIScrollView *cv = [[AXNManager sharedInstance].clvc performSelector:@selector(collectionView)];
+            if (cv && [cv respondsToSelector:@selector(_scrollToTopIfPossible:)]) {
+                [cv performSelector:@selector(_scrollToTopIfPossible:) withObject:@(YES)];
+            }
+        }
     }
 }
 
@@ -331,7 +339,10 @@
     }
 
     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    [[AXNManager sharedInstance].sbclvc _setListHasContent:([self.list count] > 0)];
+    id sbclvc = [AXNManager sharedInstance].sbclvc;
+    if (sbclvc && [sbclvc respondsToSelector:@selector(_setListHasContent:)]) {
+        [sbclvc _setListHasContent:([self.list count] > 0)];
+    }
 }
 
 -(void)setContentHost:(id)arg1 {}

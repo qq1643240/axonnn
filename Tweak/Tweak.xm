@@ -234,10 +234,18 @@ void updateViewConfiguration() {
 
 %new
 -(void)revealNotificationHistory:(BOOL)revealed {
-  [self setDidPlayRevealHaptic:YES];
-  [self forceNotificationHistoryRevealed:revealed animated:NO];
-  [self setNotificationHistorySectionNeedsReload:YES];
-  [self _reloadNotificationHistorySectionIfNecessary];
+  if ([self respondsToSelector:@selector(setDidPlayRevealHaptic:)]) {
+    [self setDidPlayRevealHaptic:YES];
+  }
+  if ([self respondsToSelector:@selector(forceNotificationHistoryRevealed:animated:)]) {
+    [self forceNotificationHistoryRevealed:revealed animated:NO];
+  }
+  if ([self respondsToSelector:@selector(setNotificationHistorySectionNeedsReload:)]) {
+    [self setNotificationHistorySectionNeedsReload:YES];
+  }
+  if ([self respondsToSelector:@selector(_reloadNotificationHistorySectionIfNecessary)]) {
+    [self _reloadNotificationHistorySectionIfNecessary];
+  }
   if (!revealed && [self respondsToSelector:@selector(clearAllCoalescingControlsCells)]) [self clearAllCoalescingControlsCells];
 }
 

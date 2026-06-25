@@ -1,0 +1,372 @@
+Incident Identifier: 57768AB0-5914-486B-A857-13E7A100ECC0
+CrashReporter Key:   b1b98bcda4e38491d7187d12ffcd9811d6f55906
+Hardware Model:      iPhone13,4
+Process:             SpringBoard [2839]
+Path:                /System/Library/CoreServices/SpringBoard.app/SpringBoard
+Identifier:          com.apple.springboard
+Version:             1.0 (50)
+Code Type:           ARM-64 (Native)
+Role:                Foreground
+Parent Process:      launchd [1]
+Coalition:           com.apple.springboard [545]
+
+Date/Time:           2026-06-25 20:27:45.7436 +0800
+Launch Time:         2026-06-25 20:27:16.2361 +0800
+OS Version:          iPhone OS 16.6 (20G5026e)
+Release Type:        Beta
+Baseband Version:    3.70.00
+Report Version:      104
+
+Exception Type:  EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Triggered by Thread:  0
+
+Application Specific Information:
+abort() called
+
+
+Last Exception Backtrace:
+0   CoreFoundation                	       0x1a0084cb4 __exceptionPreprocess + 164
+1   libobjc.A.dylib               	       0x1991243d0 objc_exception_throw + 60
+2   CoreFoundation                	       0x1a01f9ab8 +[NSObject(NSObject) _copyDescription] + 0
+3   UIKitCore                     	       0x1a2e5c4ec -[UIResponder doesNotRecognizeSelector:] + 260
+4   CoreFoundation                	       0x1a009b0e8 ___forwarding___ + 1592
+5   CoreFoundation                	       0x1a0101900 _CF_forwarding_prep_0 + 96
+6   Axon.dylib                    	       0x103f52720 0x103f3c000 + 91936
+7   libdispatch.dylib             	       0x1a7552eac _dispatch_client_callout + 20
+8   libdispatch.dylib             	       0x1a7556330 _dispatch_continuation_pop + 504
+9   libdispatch.dylib             	       0x1a7569908 _dispatch_source_invoke + 1588
+10  libdispatch.dylib             	       0x1a75615f8 _dispatch_main_queue_drain + 756
+11  libdispatch.dylib             	       0x1a75612f4 _dispatch_main_queue_callback_4CF + 44
+12  CoreFoundation                	       0x1a0113c28 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 16
+13  CoreFoundation                	       0x1a00f5560 __CFRunLoopRun + 1992
+14  CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+15  GraphicsServices              	       0x1dbd0f35c GSEventRunModal + 164
+16  UIKitCore                     	       0x1a248f6cc -[UIApplication _run] + 888
+17  UIKitCore                     	       0x1a248f330 UIApplicationMain + 340
+18  SpringBoard                   	       0x1e2ea6b58 SBSystemAppMain + 5052
+19  dyld                          	       0x101069dec start + 2220
+
+Thread 0 name:   Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   libsystem_kernel.dylib        	       0x1df723538 __pthread_kill + 8
+1   libsystem_pthread.dylib       	       0x2003ab118 pthread_kill + 268
+2   libsystem_c.dylib             	       0x1a75b3178 abort + 180
+3   libc++abi.dylib               	       0x2002e9bf8 abort_message + 132
+4   libc++abi.dylib               	       0x2002d9444 demangling_terminate_handler() + 348
+5   libobjc.A.dylib               	       0x199129ea4 _objc_terminate() + 144
+6   libc++abi.dylib               	       0x2002e8fbc std::__terminate(void (*)()) + 16
+7   libc++abi.dylib               	       0x2002e8f60 std::terminate() + 56
+8   libdispatch.dylib             	       0x1a7552ec0 _dispatch_client_callout + 40
+9   libdispatch.dylib             	       0x1a7556330 _dispatch_continuation_pop + 504
+10  libdispatch.dylib             	       0x1a7569908 _dispatch_source_invoke + 1588
+11  libdispatch.dylib             	       0x1a75615f8 _dispatch_main_queue_drain + 756
+12  libdispatch.dylib             	       0x1a75612f4 _dispatch_main_queue_callback_4CF + 44
+13  CoreFoundation                	       0x1a0113c28 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 16
+14  CoreFoundation                	       0x1a00f5560 __CFRunLoopRun + 1992
+15  CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+16  GraphicsServices              	       0x1dbd0f35c GSEventRunModal + 164
+17  UIKitCore                     	       0x1a248f6cc -[UIApplication _run] + 888
+18  UIKitCore                     	       0x1a248f330 UIApplicationMain + 340
+19  SpringBoard                   	       0x1e2ea6b58 SBSystemAppMain + 5052
+20  dyld                          	       0x101069dec start + 2220
+
+Thread 1 name:   Dispatch queue: com.apple.root.default-qos
+Thread 1:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   ATTweak.dylib                 	       0x1030241b4 0x1020ac000 + 16220596
+9   libdispatch.dylib             	       0x1a7551320 _dispatch_call_block_and_release + 32
+10  libdispatch.dylib             	       0x1a7552eac _dispatch_client_callout + 20
+11  libdispatch.dylib             	       0x1a7555f8c _dispatch_queue_override_invoke + 788
+12  libdispatch.dylib             	       0x1a7564944 _dispatch_root_queue_drain + 396
+13  libdispatch.dylib             	       0x1a7565158 _dispatch_worker_thread2 + 164
+14  libsystem_pthread.dylib       	       0x2003a4da0 _pthread_wqthread + 228
+15  libsystem_pthread.dylib       	       0x2003a4b7c start_wqthread + 8
+
+Thread 2:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 3 name:  com.apple.uikit.eventfetch-thread
+Thread 3:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   Foundation                    	       0x19a37afd4 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Foundation                    	       0x19a37aebc -[NSRunLoop(NSRunLoop) runUntilDate:] + 64
+9   UIKitCore                     	       0x1a25c23fc -[UIEventFetcher threadMain] + 416
+10  Foundation                    	       0x19a394544 __NSThread__start__ + 716
+11  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+12  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 4 name:  com.apple.CoreMotion.MotionThread
+Thread 4:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   CoreMotion                    	       0x1ab769248 0x1ab756000 + 78408
+9   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+10  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 5 name:  SBWiFiManager callback thread
+Thread 5:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   Foundation                    	       0x19a37afd4 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Foundation                    	       0x19a37ae68 -[NSRunLoop(NSRunLoop) run] + 64
+9   SpringBoard                   	       0x1e2fe99b0 -[SBWiFiManager _runManagerCallbackThread] + 184
+10  Foundation                    	       0x19a394544 __NSThread__start__ + 716
+11  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+12  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 6 name:  CommonUtilities-WiFi-Thread
+Thread 6:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   CommonUtilities               	       0x1bba47520 0x1bba3a000 + 54560
+9   Foundation                    	       0x19a394544 __NSThread__start__ + 716
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 7:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 8:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 9 name:   Dispatch queue: com.apple.root.default-qos
+Thread 9:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   ATTweak.dylib                 	       0x1030241b4 0x1020ac000 + 16220596
+9   libdispatch.dylib             	       0x1a7551320 _dispatch_call_block_and_release + 32
+10  libdispatch.dylib             	       0x1a7552eac _dispatch_client_callout + 20
+11  libdispatch.dylib             	       0x1a7555f8c _dispatch_queue_override_invoke + 788
+12  libdispatch.dylib             	       0x1a7564944 _dispatch_root_queue_drain + 396
+13  libdispatch.dylib             	       0x1a7565158 _dispatch_worker_thread2 + 164
+14  libsystem_pthread.dylib       	       0x2003a4da0 _pthread_wqthread + 228
+15  libsystem_pthread.dylib       	       0x2003a4b7c start_wqthread + 8
+
+Thread 10 name:  com.apple.CFSocket.private
+Thread 10:
+0   libsystem_kernel.dylib        	       0x1df71d7c8 __select + 8
+1   CoreFoundation                	       0x1a014399c __CFSocketManager + 636
+2   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+3   libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 11:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 12 name:  com.apple.UIKit.inProcessAnimationManager Dispatch queue: com.apple.UIKit.inProcessAnimationManagerTickQueue
+Thread 12:
+0   libsystem_kernel.dylib        	       0x1df71cbf8 semaphore_timedwait_trap + 8
+1   libdispatch.dylib             	       0x1a75534c4 _dispatch_sema4_timedwait + 64
+2   libdispatch.dylib             	       0x1a7553ac4 _dispatch_semaphore_wait_slow + 76
+3   UIKitCore                     	       0x1a24e11c4 -[UIViewInProcessAnimationManager _processPostTicksDelayIfNecessary:] + 132
+4   UIKitCore                     	       0x1a24e0e60 __82-[UIViewInProcessAnimationManager _performTick:cancel:force:eventName:entry:exit:]_block_invoke + 272
+5   libdispatch.dylib             	       0x1a7552eac _dispatch_client_callout + 20
+6   libdispatch.dylib             	       0x1a7562428 _dispatch_lane_barrier_sync_invoke_and_complete + 56
+7   UIKitCore                     	       0x1a25398c4 -[UIViewInProcessAnimationManager _performTick:cancel:force:eventName:entry:exit:] + 224
+8   UIKitCore                     	       0x1a25392f0 -[UIViewInProcessAnimationManager _displayLinkFire:] + 196
+9   QuartzCore                    	       0x1a15d034c CA::Display::DisplayLink::dispatch_items(unsigned long long, unsigned long long, unsigned long long) + 820
+10  QuartzCore                    	       0x1a15e02f4 display_timer_callback(__CFMachPort*, void*, long, void*) + 372
+11  CoreFoundation                	       0x1a00f4d54 __CFMachPortPerform + 176
+12  CoreFoundation                	       0x1a0112148 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE1_PERFORM_FUNCTION__ + 60
+13  CoreFoundation                	       0x1a0113e38 __CFRunLoopDoSource1 + 520
+14  CoreFoundation                	       0x1a00f5658 __CFRunLoopRun + 2240
+15  CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+16  Foundation                    	       0x19a37afd4 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+17  Foundation                    	       0x19a37ae68 -[NSRunLoop(NSRunLoop) run] + 64
+18  UIKitCore                     	       0x1a25635c8 __66-[UIViewInProcessAnimationManager startAdvancingAnimationManager:]_block_invoke_3 + 120
+19  Foundation                    	       0x19a394544 __NSThread__start__ + 716
+20  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+21  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 13 name:  WFWiFiStateMonitor callback thread
+Thread 13:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   Foundation                    	       0x19a37afd4 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Foundation                    	       0x19a37ae68 -[NSRunLoop(NSRunLoop) run] + 64
+9   WiFiKit                       	       0x214f44298 -[WFWiFiStateMonitor _runManagerCallbackThread] + 192
+10  Foundation                    	       0x19a394544 __NSThread__start__ + 716
+11  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+12  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 14 name:  WFPersonalHotspotStateMonitor callback thread
+Thread 14:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   Foundation                    	       0x19a37afd4 -[NSRunLoop(NSRunLoop) runMode:beforeDate:] + 212
+8   Foundation                    	       0x19a37ae68 -[NSRunLoop(NSRunLoop) run] + 64
+9   WiFiKit                       	       0x214f53a5c -[WFPersonalHotspotStateMonitor _runManagerCallbackThread] + 352
+10  Foundation                    	       0x19a394544 __NSThread__start__ + 716
+11  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+12  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 15:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 16:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 17:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 18:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000000000000   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x0000000000000000
+    x4: 0x00000002002ed647   x5: 0x000000016eebe060   x6: 0x000000000000006e   x7: 0x0000000000016800
+    x8: 0x57b4fb1c3e4f69b9   x9: 0x57e6cc1d3f41f7b9  x10: 0x0000000000000200  x11: 0x000000000000000b
+   x12: 0x000000000000000b  x13: 0x00000000001ff800  x14: 0x00000000000007fb  x15: 0x00000000be820042
+   x16: 0x0000000000000148  x17: 0x00000001010e9e00  x18: 0x0000000000000000  x19: 0x0000000000000006
+   x20: 0x0000000000000103  x21: 0x00000001010e9ee0  x22: 0x0000000000000110  x23: 0x0000000000000000
+   x24: 0x0000000000000000  x25: 0x00000001010e9ee0  x26: 0x0000000000080008  x27: 0x0000000281cacc00
+   x28: 0x00000001f6590dc0   fp: 0x000000016eebdfd0   lr: 0x00000002003ab118
+    sp: 0x000000016eebdfb0   pc: 0x00000001df723538 cpsr: 0x40001000
+   far: 0x0000000101280138  esr: 0x56000080  Address size fault
+
+Binary Images:
+       0x101054000 -        0x1010dbfff dyld arm64e  <86e3823484473eca8b74861c3b37fdd4> /usr/lib/dyld
+       0x100f40000 -        0x100f43fff SpringBoard arm64e  <024a5c0a4bce35bab508a665aacf3b60> /System/Library/CoreServices/SpringBoard.app/SpringBoard
+       0x100fa0000 -        0x100fabfff systemhook-AB52E5C39D82FE3E.dylib arm64e  <f1bdedeaf47d384cb53a89675aa53ce1> /usr/lib/systemhook-AB52E5C39D82FE3E.dylib
+       0x100fc4000 -        0x100fcbfff roothideinit.dylib arm64e  <978ca17280623c6b8d1bd77540e088ce> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/roothideinit.dylib
+       0x100fd8000 -        0x100fdffff forkfix.dylib arm64e  <e1e17aca8d5e354f80d6ce07a1d4705a> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/basebin/forkfix.dylib
+       0x100fec000 -        0x100ff7fff roothidehooks.dylib arm64e  <6f66df9d708e3a50a5cfb1227599b55a> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/basebin/roothidehooks.dylib
+       0x101004000 -        0x101027fff libjailbreak.dylib arm64e  <ea950a4cf7f9336baa18c14cd94e2b65> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/basebin/libjailbreak.dylib
+       0x101140000 -        0x101147fff libroothide.dylib arm64e  <195a8791b22d38adb959a54ab4adeaed> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libroothide.dylib
+       0x101154000 -        0x10117bfff libellekit.dylib arm64e  <3a6a672301333d9eb9c164605029d52a> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libellekit.dylib
+       0x1011c4000 -        0x1011dbfff libchoma.dylib arm64e  <9e0111c01c1031d7b87578fe050b1066> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/basebin/libchoma.dylib
+       0x10122c000 -        0x101233fff roothidepatch.dylib arm64e  <499a528b8c4f33e798e7e095619a3000> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/roothidepatch.dylib
+       0x101264000 -        0x10127bfff MobileSafety.dylib arm64e  <aa5ecbd155013547bc7bbf12774a06d2> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/ellekit/MobileSafety.dylib
+       0x101298000 -        0x1012a3fff    Choicy.dylib arm64e  <c0d3fa2086373f31a1c99e93cc8b88e3> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/   Choicy.dylib
+       0x1012b0000 -        0x1012b7fff OldABI.dylib arm64e  <f9126d9698063e649f01b6659f433e1d> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/ellekit/OldABI.dylib
+       0x1012d8000 -        0x1012e7fff         Afixroothide.dylib arm64e  <b3f44c7ebd823781bed1a8b493f2932f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/        Afixroothide.dylib
+       0x102054000 -        0x10205ffff     SVPEnglish.dylib arm64e  <ae0a2e04ac32389498c74d6b5689461b> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/    SVPEnglish.dylib
+       0x10206c000 -        0x102083fff AutoPatches.dylib arm64e  <6f80c7b3bcb63c36af493ea7fd59364f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/DynamicPatches/AutoPatches.dylib
+       0x102094000 -        0x10209bfff  Crane.dylib arm64e  <7fa90af6ebd53f70ac3337ffe34847cf> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ Crane.dylib
+       0x1020ac000 -        0x103627fff ATTweak.dylib arm64e  <0a3c2e2b1ee23d4a8711f6d2a60bf811> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ATTweak.dylib
+       0x103990000 -        0x103dbbfff AppData.dylib arm64e  <f2290503647538d59f65ccd9695fcf1f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/AppData.dylib
+       0x103ed0000 -        0x103ee3fff ArtFull.dylib arm64e  <c8027bcd2c8635f1b0a9cbe2d81e5fb6> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ArtFull.dylib
+       0x103ef0000 -        0x103f17fff Atria.dylib arm64e  <af21ef3303a430308fcd8f2dce451299> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/Atria.dylib
+       0x103f28000 -        0x103f2ffff Atria_CN.dylib arm64e  <cfa78e6e7f9230ef9b66a06e100b230c> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/Atria_CN.dylib
+       0x103f3c000 -        0x103f5bfff Axon.dylib arm64e  <be2a3166852c30fdbcd0345967f26f4f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/Axon.dylib
+       0x103f6c000 -        0x103f77fff CCBorder.dylib arm64e  <d0d2dcdbb3a735358ae0e040f3232eb2> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CCBorder.dylib
+       0x103f84000 -        0x103f9bfff libcolorpicker.dylib arm64e  <c994ba9eed03370794d339367a0d0b17> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libcolorpicker.dylib
+       0x103fb8000 -        0x103fcffff CCSupport.dylib arm64e  <a896db40a6463b8aad3e88adde264021> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CCSupport.dylib
+       0x103fec000 -        0x1042b7fff CallAssist.dylib arm64e  <a5a78130930b306498c7854f36ba3ac5> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CallAssist.dylib
+       0x104380000 -        0x104387fff libsandy.dylib arm64e  <e72ad3e89a4d30d7b69583b36de499fa> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libsandy.dylib
+       0x104394000 -        0x1043a7fff Cephei arm64e  <4dca2695007c3a219eba031180961cf5> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/Frameworks/Cephei.framework/Cephei
+       0x1043b8000 -        0x1043c3fff ChoicySB.dylib arm64e  <a4f2a24b4027361492adce76cfdcd2ac> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ChoicySB.dylib
+       0x1043d0000 -        0x104547fff CopyVault.dylib arm64e  <35e16e6e5d553dca9be18c4fa3c5af23> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CopyVault.dylib
+       0x1045a4000 -        0x1045bffff CopyVaultHelper.dylib arm64e  <abd47e233ac5377ca0a40ffc79020169> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CopyVaultHelper.dylib
+       0x1045d0000 -        0x1045f7fff CraneSB.dylib arm64e  <6ea7fa3328c73f37a6893c6cd74d65a1> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/CraneSB.dylib
+       0x10460c000 -        0x104623fff libcrane.dylib arm64e  <3b94c240882d3d18aea1d92c90b30117> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libcrane.dylib
+       0x104630000 -        0x104637fff libundirect.dylib arm64e  <86a8564429b331de91f91e04fd0baa32> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libundirect.dylib
+       0x104644000 -        0x10464ffff DayNightSwitch.dylib arm64e  <ef2ad11ec6a23c8dac0710af03bd7429> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/DayNightSwitch.dylib
+       0x10465c000 -        0x104663fff FloatingViewKeyboard.dylib arm64e  <d1ac4783e4fa3a64a01b46c7e89d66d2> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/FloatingViewKeyboard.dylib
+       0x104670000 -        0x104683fff FolderX.dylib arm64e  <417c00e0f503446299fd492a6215a621> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/FolderX.dylib
+       0x104698000 -        0x10476bfff HammerIt.dylib arm64e  <5f577ec011be3cfb82c4fe48bdd2a390> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/HammerIt.dylib
+       0x1047c0000 -        0x1047c7fff IconOrder.dylib arm64e  <b3597791d7fd397680ec9bffea3621eb> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/IconOrder.dylib
+       0x1047d4000 -        0x1047e3fff Immortalizer.dylib arm64e  <e1a939ba4b2e3108a4f2e30fcf5f3c43> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/Immortalizer.dylib
+       0x1047f0000 -        0x10480ffff InstaLauncher2.dylib arm64e  <5bf83925ff5b3a309a509c960788e061> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/InstaLauncher2.dylib
+       0x104824000 -        0x10482bfff NoBetaAlert.dylib arm64e  <8c12fd8577dd3c598b765f816fbb2d9c> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/NoBetaAlert.dylib
+       0x104838000 -        0x10483ffff NoPreferencesTips.dylib arm64e  <93a6435f07d23cd4a5111af20dedc41f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/NoPreferencesTips.dylib
+       0x10484c000 -        0x104877fff OCD.dylib arm64e  <7784419888d4499faaa3ecf42252fcaa> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/OCD.dylib
+       0x104890000 -        0x1048abfff libgcuniversal.dylib arm64e  <627c57e8b2163542b05739ed92e3ce98> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libgcuniversal.dylib
+       0x1048bc000 -        0x104957fff PullOverPro.dylib arm64e  <6c7e5fa1346d3fc1b0a41e3d02375e27> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/PullOverPro.dylib
+       0x104984000 -        0x10498bfff PurifyLine.dylib arm64e  <ea32e188066533ccaad0c194b026ed09> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/PurifyLine.dylib
+       0x104998000 -        0x10499ffff RecordDot.dylib arm64e  <463ab1b1f34430b1b68944f1e427ecbc> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/RecordDot.dylib
+       0x1049ac000 -        0x1049b3fff RemoveWidgetBackground.dylib arm64e  <e3d410f6d4f9318b99a29a8e27222dba> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/RemoveWidgetBackground.dylib
+       0x1049c0000 -        0x1049c7fff SVPKeyboardWindow.dylib arm64e  <99113dc964d7342e9fa2f4d7ac430205> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/SVPKeyboardWindow.dylib
+       0x1049d4000 -        0x104a17fff Snapper3.dylib arm64e  <0fc5c0a24b3b30228f848c79c44f3a2d> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/Snapper3.dylib
+       0x104a38000 -        0x104b23fff SquidExtender.dylib arm64e  <e810115cdfea3abd9379b13736713906> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/SquidExtender.dylib
+       0x104b70000 -        0x104c8bfff AlamofireJB arm64e  <d43e5c2103a037f6a2d14def6f6448cf> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/Frameworks/AlamofireJB.framework/AlamofireJB
+       0x104d18000 -        0x104d3bfff SKActivityIndicator arm64e  <e1927862627a3e9a8b9784f342807620> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/Frameworks/SKActivityIndicator.framework/SKActivityIndicator
+       0x104d50000 -        0x104e1ffff SquidGesturePro.dylib arm64e  <52ac0f1a0bdb3aa293c31daff9a01b35> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/SquidGesturePro.dylib
+       0x104e5c000 -        0x104e63fff CCHammerItClipBoard arm64e  <e4bc330dd5ab39eea290440117fc6fc0> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCHammerItClipBoard.bundle/CCHammerItClipBoard
+       0x104e70000 -        0x104e77fff CCHammerItOCR arm64e  <5f223df315113dc69ea403905a6d6a91> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCHammerItOCR.bundle/CCHammerItOCR
+       0x104e84000 -        0x104e8bfff CCHammerItOCRTranslate arm64e  <0104c55dd60231c0afdcb0a6282d9ae0> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCHammerItOCRTranslate.bundle/CCHammerItOCRTranslate
+       0x104e98000 -        0x104eaffff ReplayKitModule arm64e  <18b3d0d9392439d49b088128490af385> /System/Library/ControlCenter/Bundles/ReplayKitModule.bundle/ReplayKitModule
+       0x104ec0000 -        0x104ee3fff StoreSwitchAccounts.dylib arm64e  <20e253b900723410b28735f9584417c9> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/StoreSwitchAccounts.dylib
+       0x104ef8000 -        0x104f33fff TouchViz.dylib arm64e  <b86f8fb735343a979cb168a1d640f315> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/TouchViz.dylib
+       0x104f54000 -        0x104f5bfff TrollLock.dylib arm64e  <964272e6bc6d3d6d8feb891c56728684> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/TrollLock.dylib
+       0x104f68000 -        0x104f6ffff VPNIndicator.dylib arm64e  <ab8aa7cbf93c34498af8dd89b0e8b1d7> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/VPNIndicator.dylib
+       0x104f7c000 -        0x104fd3fff crack.dylib arm64e  <e0e20b287b363682b4205c0745a3390c> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/crack.dylib
+       0x104ff8000 -        0x10509ffff floatingView.dylib arm64e  <44e40bcdc53e36efaf7047770a4834cd> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/floatingView.dylib
+       0x1050dc000 -        0x105113fff Orion arm64e  <bcb9aadfe53a3beea3969399b850da3b> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/Frameworks/Orion.framework/Orion
+       0x105174000 -        0x10517bfff iapstore.dylib arm64e  <e9470b398d193e419800249a4e5705cc> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/iapstore.dylib
+       0x105188000 -        0x10519ffff libsupervip.dylib arm64e  <e258123752703f188743ba0efbac623c> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/libsupervip.dylib
+       0x1051b4000 -        0x10535bfff split-view-pro.dylib arm64e  <d2a9d3578a72310493600afd2e0e0f77> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/split-view-pro.dylib
+       0x1053c0000 -        0x1053cbfff libobjc-trampolines.dylib arm64e  <7e77fc541c3331c086e81fb7bf12836c> /private/preboot/Cryptexes/OS/usr/lib/libobjc-trampolines.dylib
+       0x105598000 -        0x10559ffff HomeProvider arm64e  <4f998d4dcc4631e1ba827fb9b2582750> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/CCSupport_Providers/HomeProvider.bundle/HomeProvider
+       0x105e24000 -        0x105e2bfff CCVPN arm64e  <4cf35a53a14c38939d0dcc98940a5523> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCVPN.bundle/CCVPN
+       0x106964000 -        0x10696ffff FocusUIModule arm64e  <fece7ebf96c33b0f960bed905ac3c80c> /System/Library/ControlCenter/Bundles/FocusUIModule.bundle/FocusUIModule
+       0x106980000 -        0x106987fff CCSettrings arm64e  <bf7f8c637bc03ecbb9d7a290758311cd> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCSettrings.bundle/CCSettrings
+       0x106994000 -        0x10699ffff ImmortalizerCC arm64e  <9bb85613160b3fa6bca2faa3023fc1c0> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/ImmortalizerCC.bundle/ImmortalizerCC
+       0x1069c0000 -        0x1069c7fff RingerToggle arm64e  <1d414d5daafa39f884cbd849d7c5800a> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/RingerToggle.bundle/RingerToggle
+       0x1069d4000 -        0x1069ebfff CCTouchViz arm64e  <ef48a0b6c300340ab66ef4ce3ab178d6> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/ControlCenter/Bundles/CCTouchViz.bundle/CCTouchViz
+       0x1058c4000 -        0x1058d3fff StoreDemoPlugin arm64e  <cd797027960831a8be587e8c289af293> /System/Library/SpringBoardPlugins/StoreDemoPlugin.servicebundle/StoreDemoPlugin
+       0x105b48000 -        0x105b57fff AltList arm64e  <25668d576b2a36fb81172636c1c23e8f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/Library/Frameworks/AltList.framework/AltList
+       0x1df71c000 -        0x1df753fe7 libsystem_kernel.dylib arm64e  <60cfca7236ea32da85ab41e269a5d376> /usr/lib/system/libsystem_kernel.dylib
+       0x2003a4000 -        0x2003afff3 libsystem_pthread.dylib arm64e  <b153dae1aee63a1585dc7fff7534a1b6> /usr/lib/system/libsystem_pthread.dylib
+       0x1a7596000 -        0x1a7613ff3 libsystem_c.dylib arm64e  <3c9197f248ac3937a6c0fd0ffc69a935> /usr/lib/system/libsystem_c.dylib
+       0x2002d8000 -        0x2002effff libc++abi.dylib arm64e  <1e834588aca6327a9a965aa8b13a2ae2> /usr/lib/libc++abi.dylib
+       0x19910c000 -        0x19914ff9f libobjc.A.dylib arm64e  <eb7faf215c9f37848907affa6d92bc3b> /usr/lib/libobjc.A.dylib
+       0x1a754f000 -        0x1a7595fff libdispatch.dylib arm64e  <c3d106105d2d3c08876dbaec0bbe4a8c> /usr/lib/system/libdispatch.dylib
+       0x1a007b000 -        0x1a0462fff CoreFoundation arm64e  <5f70f44946bf37be801c4f16b38fc659> /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+       0x1dbd0e000 -        0x1dbd16fff GraphicsServices arm64e  <3e7f0c02172d33f2955bf3c77e33952e> /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+       0x1a20f2000 -        0x1a3916fff UIKitCore arm64e  <43cf521265b03839ad466882f0f9b980> /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+       0x1e2e02000 -        0x1e396dfff SpringBoard arm64e  <768746e3e3a4327dadf49b3f50322a95> /System/Library/PrivateFrameworks/SpringBoard.framework/SpringBoard
+       0x19a339000 -        0x19ac16fff Foundation arm64e  <ed98a0d650863470afa9246e50e4246b> /System/Library/Frameworks/Foundation.framework/Foundation
+       0x1ab756000 -        0x1abb65fff CoreMotion arm64e  <b064494b8e2b3f9d9a134175d9966d59> /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+       0x1bba3a000 -        0x1bba57fff CommonUtilities arm64e  <79744f5e5d203c1fbe8364694ab60a99> /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+       0x1a15a7000 -        0x1a1920fff QuartzCore arm64e  <1d9bfc00dff1352390d6afd111b81683> /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+       0x214ef4000 -        0x214fbcfff WiFiKit arm64e  <324bc07832673f71b1eff4e007b462a1> /System/Library/PrivateFrameworks/WiFiKit.framework/WiFiKit
+
+EOF

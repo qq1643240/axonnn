@@ -1,0 +1,273 @@
+Incident Identifier: EFA08559-B8C0-41B9-A247-AB994A5C1541
+CrashReporter Key:   b1b98bcda4e38491d7187d12ffcd9811d6f55906
+Hardware Model:      iPhone13,4
+Process:             backboardd [2042]
+Path:                /usr/libexec/backboardd
+Identifier:          backboardd
+Version:             ???
+Code Type:           ARM-64 (Native)
+Role:                Unspecified
+Parent Process:      launchd [1]
+Coalition:           com.apple.backboardd [613]
+
+Date/Time:           2026-06-25 20:27:15.9377 +0800
+Launch Time:         2026-06-25 20:21:32.0275 +0800
+OS Version:          iPhone OS 16.6 (20G5026e)
+Release Type:        Beta
+Baseband Version:    3.70.00
+Report Version:      104
+
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0020000103c01c90 -> 0x0000000103c01c90 (possible pointer authentication failure)
+Exception Codes: 0x0000000000000001, 0x0020000103c01c90
+VM Region Info: 0x103c01c90 is in 0x103bb8000-0x103c1c000;  bytes after start: 302224  bytes before end: 107375
+      REGION TYPE                 START - END      [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL
+      __TEXT                   10263c000-103bb8000 [ 21.5M] r-x/rwx SM=COW  ...ATTweak.dylib
+--->  __DATA_CONST             103bb8000-103c1c000 [  400K] r--/rw- SM=COW  ...ATTweak.dylib
+      __DATA_CONST             103c1c000-103c20000 [   16K] r--/rw- SM=COW  ...ATTweak.dylib
+Termination Reason: SIGNAL 11 Segmentation fault: 11
+Terminating Process: exc handler [2042]
+
+Triggered by Thread:  14
+
+Thread 0 name:   Dispatch queue: com.apple.main-thread
+Thread 0:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   backboardd                    	       0x102219070 0x10220c000 + 53360
+8   dyld                          	       0x102565dec start + 2220
+
+Thread 1 name:  IOHIDService - RunLoopCompatibilityThread
+Thread 1:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   IOKit                         	       0x1a7f68a0c __IOHIDServiceRunLoopCompatibilityThread + 280
+9   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+10  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 2 name:  IOHIDEvent Server Connection - Root
+Thread 2:
+0   libsystem_kernel.dylib        	       0x1df71cbf8 semaphore_timedwait_trap + 8
+1   libdispatch.dylib             	       0x1a75534c4 _dispatch_sema4_timedwait + 64
+2   libdispatch.dylib             	       0x1a7553ac4 _dispatch_semaphore_wait_slow + 76
+3   libdispatch.dylib             	       0x1a7564718 _dispatch_worker_thread + 324
+4   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+5   libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 3 name:  com.apple.coreanimation.render-server
+Thread 3:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   QuartzCore                    	       0x1a15f29d4 CA::Render::Server::server_thread(void*) + 556
+5   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+6   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+7   libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 4 name:  com.apple.coreanimation.display.primary
+Thread 4:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a184a87c CA::WindowServer::IOMFBServer::thread_body(void*) + 484
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 5 name:  com.apple.coreanimation.frameinfo.primary
+Thread 5:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a184aad8 CA::WindowServer::IOMFBServer::frame_info_thread_body(void*) + 424
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 6 name:  com.apple.coreanimation.display.wireless0
+Thread 6:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a184a87c CA::WindowServer::IOMFBServer::thread_body(void*) + 484
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 7 name:  com.apple.coreanimation.display.wireless1
+Thread 7:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a184a87c CA::WindowServer::IOMFBServer::thread_body(void*) + 484
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 8 name:  com.apple.coreanimation.display.wireless2
+Thread 8:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a184a87c CA::WindowServer::IOMFBServer::thread_body(void*) + 484
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 9 name:  com.apple.CoreMotion.MotionThread
+Thread 9:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   CoreMotion                    	       0x1ab769248 0x1ab756000 + 78408
+9   libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+10  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 10 name:  com.apple.coreanimation.asynchronous
+Thread 10:
+0   libsystem_kernel.dylib        	       0x1df71cc64 mach_msg2_trap + 8
+1   libsystem_kernel.dylib        	       0x1df72fb34 mach_msg2_internal + 80
+2   libsystem_kernel.dylib        	       0x1df72fe0c mach_msg_overwrite + 540
+3   libsystem_kernel.dylib        	       0x1df71d1a8 mach_msg + 24
+4   CoreFoundation                	       0x1a00f4024 __CFRunLoopServiceMachPort + 160
+5   CoreFoundation                	       0x1a00f5250 __CFRunLoopRun + 1208
+6   CoreFoundation                	       0x1a00fa3ec CFRunLoopRunSpecific + 612
+7   CoreFoundation                	       0x1a013cea4 CFRunLoopRun + 64
+8   QuartzCore                    	       0x1a17020e8 CA::OGL::AsynchronousDispatcher::thread_body(void*) + 204
+9   QuartzCore                    	       0x1a1855e7c thread_fun(void*) + 32
+10  libsystem_pthread.dylib       	       0x2003a56b8 _pthread_start + 148
+11  libsystem_pthread.dylib       	       0x2003a4b88 thread_start + 8
+
+Thread 11:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 12:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 13:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 14 name:   Dispatch queue: BSXPCCnx:com.apple.backboard.system-app-server (BSCnx:host:Shell)
+Thread 14 Crashed:
+0   libc++.1.dylib                	       0x1ae7b8e34 std::__1::__shared_weak_count::__release_weak() + 44
+1   ATTweak.dylib                 	       0x102f19adc 0x10263c000 + 9296604
+2   ATTweak.dylib                 	       0x102f3c2ac 0x10263c000 + 9437868
+3   libsystem_c.dylib             	       0x1a75b3b1c __cxa_finalize_ranges + 476
+4   libsystem_c.dylib             	       0x1a75aef60 exit + 32
+5   backboardd                    	       0x102271720 0x10220c000 + 415520
+6   backboardd                    	       0x102270894 0x10220c000 + 411796
+7   BoardServices                 	       0x1b68e1e54 +[BSXPCServiceConnectionProxy invokeMethod:onTarget:withMessage:forConnection:] + 1324
+8   BoardServices                 	       0x1b68db5bc __63-[BSXPCServiceConnectionEventHandler connection:handleMessage:]_block_invoke + 544
+9   BoardServices                 	       0x1b68ea334 BSXPCServiceConnectionExecuteCallOut + 240
+10  BoardServices                 	       0x1b68e0cd0 -[BSXPCServiceConnectionEventHandler connection:handleMessage:] + 176
+11  BoardServices                 	       0x1b68e15dc -[BSXPCServiceConnection _connection_handleMessage:fromPeer:withHandoff:] + 516
+12  libdispatch.dylib             	       0x1a7551320 _dispatch_call_block_and_release + 32
+13  libdispatch.dylib             	       0x1a7552eac _dispatch_client_callout + 20
+14  libdispatch.dylib             	       0x1a755a534 _dispatch_lane_serial_drain + 668
+15  libdispatch.dylib             	       0x1a755b0d8 _dispatch_lane_invoke + 436
+16  libdispatch.dylib             	       0x1a755a40c _dispatch_lane_serial_drain + 372
+17  libdispatch.dylib             	       0x1a755b0d8 _dispatch_lane_invoke + 436
+18  libdispatch.dylib             	       0x1a7565cdc _dispatch_workloop_worker_thread + 648
+19  libsystem_pthread.dylib       	       0x2003a4ddc _pthread_wqthread + 288
+20  libsystem_pthread.dylib       	       0x2003a4b7c start_wqthread + 8
+
+Thread 15:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 16:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+Thread 17:
+0   libsystem_pthread.dylib       	       0x2003a4b74 start_wqthread + 0
+
+
+Thread 14 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000a0aa76940   x1: 0x0000000103c01cc0   x2: 0x406b888102f19c1c   x3: 0x0000000a0ad14c30
+    x4: 0x0000000000000100   x5: 0x0000000a0ad14c30   x6: 0x0000000000000010   x7: 0x0000000000000003
+    x8: 0x0000000a0aa76950   x9: 0x0000000000000000  x10: 0x0000000000000000  x11: 0x0000000000000002
+   x12: 0x0000000000000002  x13: 0x0000000000000000  x14: 0x0000000000000000  x15: 0x0000000000000000
+   x16: 0x0020000103c01c70  x17: 0x634f000a0aa76940  x18: 0x0000000000000000  x19: 0x0000000a0aa76928
+   x20: 0x0000000a0aa76940  x21: 0x0000000000000002  x22: 0x0000000a0b00bc00  x23: 0x0000000000000000
+   x24: 0x0000000000000008  x25: 0x00000001f658f000  x26: 0x0000000000000001  x27: 0x0000000000000000
+   x28: 0x0000000000000000   fp: 0x000000016dc79fa0   lr: 0x0000000102f19adc
+    sp: 0x000000016dc79f90   pc: 0x00000001ae7b8e34 cpsr: 0x60001000
+   far: 0x0020000103c01c90  esr: 0x92000004 (Data Abort) byte read Translation fault
+
+Binary Images:
+       0x102550000 -        0x1025d7fff dyld arm64e  <86e3823484473eca8b74861c3b37fdd4> /usr/lib/dyld
+       0x10220c000 -        0x1022effff backboardd arm64e  <3e7750e78217398f891d760f8aa4c827> /usr/libexec/backboardd
+       0x102380000 -        0x10238bfff systemhook-AB52E5C39D82FE3E.dylib arm64e  <f1bdedeaf47d384cb53a89675aa53ce1> /usr/lib/systemhook-AB52E5C39D82FE3E.dylib
+       0x1023a4000 -        0x1023abfff roothideinit.dylib arm64e  <978ca17280623c6b8d1bd77540e088ce> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/roothideinit.dylib
+       0x1023b8000 -        0x1023bffff roothidepatch.dylib arm64e  <499a528b8c4f33e798e7e095619a3000> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/roothidepatch.dylib
+       0x1023cc000 -        0x1023d3fff libroothide.dylib arm64e  <195a8791b22d38adb959a54ab4adeaed> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libroothide.dylib
+       0x102448000 -        0x102453fff    Choicy.dylib arm64e  <c0d3fa2086373f31a1c99e93cc8b88e3> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/   Choicy.dylib
+       0x102460000 -        0x102467fff OldABI.dylib arm64e  <f9126d9698063e649f01b6659f433e1d> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/ellekit/OldABI.dylib
+       0x10247c000 -        0x1024a3fff libellekit.dylib arm64e  <3a6a672301333d9eb9c164605029d52a> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/libellekit.dylib
+       0x1024f8000 -        0x1024fffff  Crane.dylib arm64e  <7fa90af6ebd53f70ac3337ffe34847cf> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ Crane.dylib
+       0x10250c000 -        0x102523fff AutoPatches.dylib arm64e  <6f80c7b3bcb63c36af493ea7fd59364f> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/DynamicPatches/AutoPatches.dylib
+       0x10263c000 -        0x103bb7fff ATTweak.dylib arm64e  <0a3c2e2b1ee23d4a8711f6d2a60bf811> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/ATTweak.dylib
+       0x103f1c000 -        0x103fb7fff PullOverPro.dylib arm64e  <6c7e5fa1346d3fc1b0a41e3d02375e27> /private/var/containers/Bundle/Application/.jbroot-AB52E5C39D82FE3E/usr/lib/TweakInject/PullOverPro.dylib
+       0x102534000 -        0x102537fff IOHIDRemoteSensorSessionFilter arm64e  <02f4315b0c8e36e89cd21a5afabc5313> /System/Library/HIDPlugins/SessionFilters/IOHIDRemoteSensorSessionFilter.plugin/IOHIDRemoteSensorSessionFilter
+       0x104600000 -        0x10460ffff IOAnalytics arm64e  <e0e620b2129232dba43706eca06ef8f4> /System/Library/HIDPlugins/SessionFilters/IOAnalytics.plugin/IOAnalytics
+       0x103fe4000 -        0x103fe7fff IOHIDMotionEventSessionFilter arm64e  <a07d4210742d3af382d456aa708c54de> /System/Library/HIDPlugins/SessionFilters/IOHIDMotionEventSessionFilter.plugin/IOHIDMotionEventSessionFilter
+       0x104630000 -        0x104633fff IOHIDDisplaySessionFilter arm64e  <322098ccd2a931caa44572f33f0113eb> /System/Library/HIDPlugins/SessionFilters/IOHIDDisplaySessionFilter.plugin/IOHIDDisplaySessionFilter
+       0x104644000 -        0x104653fff ColourSensorFilterPlugin arm64e  <a6b0834c44c63ba39f020dab82d83370> /System/Library/HIDPlugins/ColourSensorFilterPlugin.plugin/ColourSensorFilterPlugin
+       0x104664000 -        0x104667fff IOHIDEventServicePlugin arm64e  <18a899deae793d3b907f66a9cbba3b18> /System/Library/HIDPlugins/ServicePlugins/IOHIDEventServicePlugin.plugin/IOHIDEventServicePlugin
+       0x1046a8000 -        0x1046abfff SafetyServiceFilter arm64e  <59c68d5b24bb39aca61d0248b06e9a8d> /System/Library/HIDPlugins/ServiceFilters/SafetyServiceFilter.plugin/SafetyServiceFilter
+       0x1053b8000 -        0x1053e7fff BackBoard arm64e  <41a88d422c5c39a1a8a99affca9e4060> /System/Library/AccessibilityBundles/BackBoard.axbundle/BackBoard
+       0x10b18c000 -        0x10b197fff libobjc-trampolines.dylib arm64e  <7e77fc541c3331c086e81fb7bf12836c> /private/preboot/Cryptexes/OS/usr/lib/libobjc-trampolines.dylib
+       0x1df71c000 -        0x1df753fe7 libsystem_kernel.dylib arm64e  <60cfca7236ea32da85ab41e269a5d376> /usr/lib/system/libsystem_kernel.dylib
+       0x1a007b000 -        0x1a0462fff CoreFoundation arm64e  <5f70f44946bf37be801c4f16b38fc659> /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+       0x1a7f10000 -        0x1a7fccfff IOKit arm64e  <aa5ca884cf7a35cba978a304759d17dd> /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+       0x2003a4000 -        0x2003afff3 libsystem_pthread.dylib arm64e  <b153dae1aee63a1585dc7fff7534a1b6> /usr/lib/system/libsystem_pthread.dylib
+       0x1a754f000 -        0x1a7595fff libdispatch.dylib arm64e  <c3d106105d2d3c08876dbaec0bbe4a8c> /usr/lib/system/libdispatch.dylib
+       0x1a15a7000 -        0x1a1920fff QuartzCore arm64e  <1d9bfc00dff1352390d6afd111b81683> /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+       0x1ab756000 -        0x1abb65fff CoreMotion arm64e  <b064494b8e2b3f9d9a134175d9966d59> /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+       0x1ae7a4000 -        0x1ae830ff7 libc++.1.dylib arm64e  <73d4f57ea1293e3794408eeb0d608273> /usr/lib/libc++.1.dylib
+       0x1a7596000 -        0x1a7613ff3 libsystem_c.dylib arm64e  <3c9197f248ac3937a6c0fd0ffc69a935> /usr/lib/system/libsystem_c.dylib
+       0x1b68da000 -        0x1b692ffff BoardServices arm64e  <96a37be12e383ae290bcedacb3b6c996> /System/Library/PrivateFrameworks/BoardServices.framework/BoardServices
+               0x0 - 0xffffffffffffffff ??? unknown-arch  <00000000000000000000000000000000> ???
+
+EOF
