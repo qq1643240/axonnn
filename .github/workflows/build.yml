@@ -60,6 +60,12 @@ jobs:
           name: Axon-deb
           path: ./packages/*.deb
           
+      - name: List packages
+        run: |
+          ls -la packages/
+          echo "DEB files:"
+          ls packages/*.deb
+          
       - name: Create Release
         if: github.ref == 'refs/heads/master'
         uses: softprops/action-gh-release@v1
@@ -67,7 +73,8 @@ jobs:
           tag_name: v1.5-build-${{ github.run_number }}
           name: Axon v1.5 Build #${{ github.run_number }}
           body: Automated build from commit ${{ github.sha }}
-          files: packages/*.deb
-          fail_on_unmatched_files: false
+          files: |
+            packages/*.deb
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
