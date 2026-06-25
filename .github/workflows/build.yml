@@ -32,12 +32,12 @@ jobs:
           cd $THEOS/sdks
           echo "Current SDKs:"
           ls -la
-          echo "Downloading SDKs..."
-          curl -L --retry 5 --retry-delay 10 --fail -o sdks.zip https://github.com/theos/sdks/archive/refs/heads/master.zip
-          echo "Download complete, extracting..."
-          unzip -q sdks.zip
-          mv sdks-master/*.sdk .
-          rm -rf sdks.zip sdks-master
+          if [ -z "$(ls -A *.sdk 2>/dev/null)" ]; then
+            echo "No SDKs found, cloning..."
+            git clone --depth 1 https://github.com/theos/sdks.git tmp_sdks
+            mv tmp_sdks/*.sdk .
+            rm -rf tmp_sdks
+          fi
           echo "Final SDKs:"
           ls -la
           
