@@ -80,7 +80,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Axon-deb
-          path: ./packages/*.deb
+          path: |
+            packages/*.deb
+            .theos/packages/*.deb
           
       - name: List packages
         run: |
