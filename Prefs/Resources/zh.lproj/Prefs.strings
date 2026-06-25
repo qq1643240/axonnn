@@ -1,0 +1,77 @@
+{
+  "ENABLED_RESPRING" = "启用（需要重新加载桌面）";
+  "VERTICAL" = "垂直模式";
+  "VERTICAL_INFO" = "将Axon旋转90度，放置在一侧，并使通知更小。需要重新加载桌面。实验性功能。";
+  "VERTICAL_RESPRING" = "垂直（需要重新加载桌面）";
+  "ENABLED" = "启用";
+  "HAPTIC_FEEDBACK" = "触感反馈";
+  "DARK_MODE" = "深色模式";
+
+  "SYSTEM" = "跟随系统";
+  "LIGHT" = "浅色";
+  "DARK" = "深色";
+
+  "STYLE" = "样式";
+  "DEFAULT" = "默认";
+  "PACKED" = "紧凑";
+  "COMPACT" = "迷你";
+  "TINY" = "微小";
+  "GROUP" = "分组（测试版，需要重新加载桌面）";
+  "ROUNEDED_GROUP" = "圆角分组（测试版，需要重新加载桌面）";
+
+  "SHOW" = "默认显示";
+  "NOTHING" = "无";
+  "LATEST_NOTIFICATION" = "最新通知";
+  "FIRST_SECTION" = "第一个分组";
+  "SELECTED_SECTION" = "选中的分组";
+
+  "SORTING" = "排序方式";
+  "BY_DATE" = "最新优先";
+  "BY_NAME" = "按应用名称";
+  "BY_COUNT" = "按数量";
+
+  "ICON_STYLE" = "图标样式";
+  "ROUNDED" = "圆角";
+  "SQUARE" = "方形";
+
+  "SELECTION_STYLE" = "选中样式";
+  "BACKGROUND" = "添加背景";
+  "DIM" = "暗化其他";
+  "NONE" = "无";
+
+  "ADD_BLUR" = "添加模糊";
+
+  "LOCATION" = "位置";
+  "TOP" = "顶部";
+  "BOTTOM" = "底部（测试版）";
+
+  "BADGES" = "角标";
+  "SHOW_BACKGROUND" = "显示背景";
+
+  "SPACING" = "间距";
+
+  "ALIGNMENT" = "对齐方式";
+  "LEFT" = "左";
+  "CENTER" = "居中";
+  "RIGHT" = "右";
+
+  "GESTURES" = "手势操作";
+  "GESTURES_INFO" = "为Axon视图上的滑动手势分配操作。";
+  "SWIPE_UP" = "上滑";
+  "SWIPE_DOWN" = "下滑";
+  "SWIPE_LEFT" = "左滑";
+  "SWIPE_RIGHT" = "右滑";
+  "CLEAR_ALL" = "清除所有通知";
+  "DISMISS" = "关闭通知中心";
+  "CLEAR_SELECTED" = "清除选中应用";
+  "TOGGLE_HISTORY" = "切换通知历史";
+
+  "CREDITS_1" = "Ahmed Bousrih";
+  "CREDITS_1_INFO" = "设计了图标和横幅。";
+
+  "RESPRING" = "重新加载桌面";
+  "DEBUG" = "调试选项";
+  "SOURCE_CODE" = "源代码";
+  "DONATE_TO_NEPETA" = "向Nepeta捐赠";
+  "SUPPORT_ME" = "支持我！";
+}
