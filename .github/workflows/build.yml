@@ -52,10 +52,13 @@ jobs:
           make clean THEOS="$THEOS"
           make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
           echo "Build complete, listing all files:"
-          find . -name "*.deb" -type f 2>/dev/null
-          find $THEOS -name "*.deb" -type f 2>/dev/null
-          ls -la packages/ 2>/dev/null || echo "packages directory not found"
-          ls -la .theos/packages/ 2>/dev/null || echo ".theos/packages directory not found"
+          find . -name "*.deb" -type f 2>/dev/null | tee deb-files.txt
+          find $THEOS -name "*.deb" -type f 2>/dev/null | tee -a deb-files.txt
+          ls -la packages/ 2>/dev/null | tee -a deb-files.txt || echo "packages directory not found" | tee -a deb-files.txt
+          ls -la .theos/packages/ 2>/dev/null | tee -a deb-files.txt || echo ".theos/packages directory not found" | tee -a deb-files.txt
+          echo "Current directory:" | tee -a deb-files.txt
+          pwd | tee -a deb-files.txt
+          ls -la | tee -a deb-files.txt
           
       - name: Print build log on failure
         if: always()
@@ -65,12 +68,14 @@ jobs:
           cat build.log >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           
-      - name: Upload build log
+      - name: Upload debug files
         uses: actions/upload-artifact@v4
         with:
-          name: build-log
-          path: build.log
-          
+          name: debug-files
+          path: |
+            build.log
+            deb-files.txt
+            
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
