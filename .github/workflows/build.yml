@@ -48,6 +48,10 @@ jobs:
         run: |
           make clean
           make package FINALPACKAGE=1 THEOS="$HOME/theos" 2>&1 | tee build.log
+          echo "Build complete, listing files:"
+          find . -name "*.deb" -type f
+          ls -la packages/ 2>/dev/null || echo "packages directory not found"
+          ls -la .theos/packages/ 2>/dev/null || echo ".theos/packages directory not found"
           
       - name: Print build log on failure
         if: failure()
