@@ -56,3 +56,12 @@ jobs:
         with:
           name: Axon-deb
           path: ./packages/*.deb
+          
+      - name: Create Release
+        if: github.ref == 'refs/heads/master'
+        run: |
+          DEB_FILE=$(ls packages/*.deb | head -1)
+          DEB_NAME=$(basename $DEB_FILE)
+          gh release create "v1.5-build" "$DEB_FILE" --title "Axon v1.5 Build" --notes "Automated build from commit ${{ github.sha }}" --repo qq1643240/axonnn || echo "Release already exists, updating..."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
