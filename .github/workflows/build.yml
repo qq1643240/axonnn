@@ -9,7 +9,7 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  THEOS: ${{ github.workspace }}/theos
+  THEOS: /home/runner/theos
 
 jobs:
   build:
@@ -21,53 +21,33 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential git curl wget perl clang lld llvm libxml2-dev libssl-dev zlib1g-dev dpkg-dev
-          
-      - name: Cache Theos
-        id: cache-theos
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.THEOS }}
-          key: theos-v1
+          sudo apt-get install -y build-essential git curl perl clang lld llvm \
+            libxml2-dev libssl-dev zlib1g-dev dpkg-dev unzip wget
           
       - name: Install Theos
-        if: steps.cache-theos.outputs.cache-hit != 'true'
         run: |
           git clone --recursive https://github.com/theos/theos.git $THEOS
-          
-      - name: Cache iOS SDK
-        id: cache-sdk
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.THEOS }}/sdks/iOS16.2.sdk
-          key: ios-sdk-16.2-v1
+          echo "THEOS=$THEOS" >> $GITHUB_ENV
           
       - name: Download iOS SDK
-        if: steps.cache-sdk.outputs.cache-hit != 'true'
         run: |
           cd $THEOS/sdks
-          curl -L -o iOS16.2.sdk.tar.xz https://github.com/theos/sdks/releases/download/16.2/iOS16.2.sdk.tar.xz
+          wget -q https://github.com/theos/sdks/releases/download/16.2/iOS16.2.sdk.tar.xz
           tar -xf iOS16.2.sdk.tar.xz
           rm iOS16.2.sdk.tar.xz
-          
-      - name: Cache ldid
-        id: cache-ldid
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.THEOS }}/bin/ldid
-          key: ldid-v1
+          ls -la
           
       - name: Install ldid
-        if: steps.cache-ldid.outputs.cache-hit != 'true'
         run: |
           cd $THEOS/bin
-          curl -L -o ldid https://github.com/theos/ldid/releases/download/v2.1.5-procur/ldid_linux_x86_64
+          wget -q -O ldid https://github.com/theos/ldid/releases/download/v2.1.5-procur/ldid_linux_x86_64
           chmod +x ldid
           
       - name: Build Package
         run: |
+          export PATH="$THEOS/bin:$PATH"
           make clean
-          make package FINALPACKAGE=1
+          make package FINALPACKAGE=1 VERBOSE=1
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
