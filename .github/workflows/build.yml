@@ -59,9 +59,11 @@ jobs:
           
       - name: Create Release
         if: github.ref == 'refs/heads/master'
-        run: |
-          DEB_FILE=$(ls packages/*.deb | head -1)
-          DEB_NAME=$(basename $DEB_FILE)
-          gh release create "v1.5-build" "$DEB_FILE" --title "Axon v1.5 Build" --notes "Automated build from commit ${{ github.sha }}" --repo qq1643240/axonnn || echo "Release already exists, updating..."
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.5-build
+          name: Axon v1.5 Build
+          body: Automated build from commit ${{ github.sha }}
+          files: packages/*.deb
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
