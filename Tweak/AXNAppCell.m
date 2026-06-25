@@ -4,7 +4,7 @@
 
 @implementation AXNAppCell
 
-NSMutableDictionary* prefs;
+static NSMutableDictionary* prefs;
 
 UIView *getBlurView(CGRect frame) {
     NSInteger darkModeTmp = [prefs[@"DarkMode"] intValue] ?: 0;
