@@ -52,13 +52,18 @@ jobs:
           make clean THEOS="$THEOS"
           make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
           echo "Build complete, listing all files:"
-          find . -name "*.deb" -type f 2>/dev/null | tee deb-files.txt
-          find $THEOS -name "*.deb" -type f 2>/dev/null | tee -a deb-files.txt
-          ls -la packages/ 2>/dev/null | tee -a deb-files.txt || echo "packages directory not found" | tee -a deb-files.txt
-          ls -la .theos/packages/ 2>/dev/null | tee -a deb-files.txt || echo ".theos/packages directory not found" | tee -a deb-files.txt
-          echo "Current directory:" | tee -a deb-files.txt
-          pwd | tee -a deb-files.txt
-          ls -la | tee -a deb-files.txt
+          echo "=== Current directory ===" 
+          pwd
+          ls -la
+          echo "=== packages directory ===" 
+          ls -la packages/ 2>/dev/null || echo "packages directory not found"
+          echo "=== .theos/packages directory ===" 
+          ls -la .theos/packages/ 2>/dev/null || echo ".theos/packages directory not found"
+          echo "=== $THEOS/packages directory ===" 
+          ls -la $THEOS/packages/ 2>/dev/null || echo "$THEOS/packages directory not found"
+          echo "=== Finding all deb files ===" 
+          find . -name "*.deb" -type f 2>/dev/null
+          find $THEOS -name "*.deb" -type f 2>/dev/null
           
       - name: Print build log on failure
         if: always()
