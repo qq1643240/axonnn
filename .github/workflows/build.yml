@@ -44,13 +44,13 @@ jobs:
           echo "Final SDKs:"
           ls -la
           
-      - name: Build Package
+      - name: Build Package (RootHide)
         run: |
           echo "THEOS=$THEOS"
           echo "HOME=$HOME"
           ls -la $THEOS/
           make clean THEOS="$THEOS"
-          make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
+          THEOS_PACKAGE_SCHEME=roothide make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
           echo "Build complete, listing all files:"
           echo "=== Current directory ===" 
           pwd
@@ -99,9 +99,9 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v1.5-build-${{ github.run_number }}
-          name: Axon v1.5 Build #${{ github.run_number }}
-          body: Automated build from commit ${{ github.sha }}
+          tag_name: v1.5-roothide-${{ github.run_number }}
+          name: Axon v1.5 RootHide Build #${{ github.run_number }}
+          body: RootHide build from commit ${{ github.sha }}
           files: |
             packages/*.deb
           fail_on_unmatched_files: true
