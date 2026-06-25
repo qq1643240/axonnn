@@ -1,4 +1,5 @@
 #import <AudioToolbox/AudioToolbox.h>
+#import <objc/runtime.h>
 #import "AXNView.h"
 #import "AXNAppCell.h"
 #import "AXNManager.h"
@@ -40,36 +41,87 @@
 
     self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     self.panGesture.delegate = self;
-    [self addGestureRecognizer:self.panGesture];
+    // Only recognise after a small movement to avoid conflicting with collection view scrolling
+    self.panGesture.delaysTouchesBegan = NO;
+    self.panGesture.delaysTouchesEnded = NO;
+    [self.collectionView addGestureRecognizer:self.panGesture];
 
     return self;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    return NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    // Require the collection view's pan to fail before our pan triggers
+    if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return NO;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        CGPoint velocity = [gesture velocityInView:self];
-        CGFloat verticalThreshold = 50;
-        CGFloat horizontalThreshold = 50;
-        
-        BOOL isVertical = fabs(velocity.y) > fabs(velocity.x);
-        
-        if (isVertical) {
-            if (velocity.y < -verticalThreshold) {
-                [self performSwipeAction:self.swipeUpAction];
-            } else if (velocity.y > verticalThreshold) {
-                [self performSwipeAction:self.swipeDownAction];
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        objc_setAssociatedObject(gesture, "startLocation", NSStringFromCGPoint([gesture locationInView:self.collectionView]), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(gesture, "startTime", @([NSDate timeIntervalSinceReferenceDate]), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return;
+    }
+
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        NSString *startStr = objc_getAssociatedObject(gesture, "startLocation");
+        NSNumber *startTimeNum = objc_getAssociatedObject(gesture, "startTime");
+        if (!startStr || !startTimeNum) return;
+
+        CGPoint startLocation = CGPointFromString(startStr);
+        CGPoint currentLocation = [gesture locationInView:self.collectionView];
+        CGFloat dx = currentLocation.x - startLocation.x;
+        CGFloat dy = currentLocation.y - startLocation.y;
+        CGFloat distance = sqrt(dx*dx + dy*dy);
+
+        // Only trigger if movement is significant (> 30 points)
+        if (distance < 30) return;
+
+        // Cancel if too slow
+        NSTimeInterval elapsed = [NSDate timeIntervalSinceReferenceDate] - [startTimeNum doubleValue];
+        if (elapsed > 0.6) {
+            objc_setAssociatedObject(gesture, "startLocation", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(gesture, "startTime", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            return;
+        }
+
+        NSInteger action = 0;
+        if (fabs(dx) > fabs(dy)) {
+            // Horizontal swipe
+            if (dx > 0) {
+                action = self.swipeRightAction; // right
+            } else {
+                action = self.swipeLeftAction;  // left
             }
         } else {
-            if (velocity.x < -horizontalThreshold) {
-                [self performSwipeAction:self.swipeLeftAction];
-            } else if (velocity.x > horizontalThreshold) {
-                [self performSwipeAction:self.swipeRightAction];
+            // Vertical swipe
+            if (dy > 0) {
+                action = self.swipeDownAction;  // down
+            } else {
+                action = self.swipeUpAction;    // up
             }
         }
+
+        if (action > 0) {
+            objc_setAssociatedObject(gesture, "startLocation", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(gesture, "startTime", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            [self performSwipeAction:action];
+        }
+        return;
+    }
+
+    if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled) {
+        objc_setAssociatedObject(gesture, "startLocation", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(gesture, "startTime", nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
@@ -208,7 +260,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (!collectionView || !indexPath) return;
     AXNAppCell *cell = (AXNAppCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (!cell || !cell.bundleIdentifier) return;
 
     if (![self.selectedBundleIdentifier isEqualToString:cell.bundleIdentifier]) {
         [[AXNManager sharedInstance] hideAllNotificationRequests];
@@ -218,20 +272,9 @@
     [[AXNManager sharedInstance] showNotificationRequestsForBundleIdentifier:cell.bundleIdentifier];
     self.showingLatestRequest = NO;
 
-    id idleCoordinator = [NSClassFromString(@"SBIdleTimerGlobalCoordinator") sharedInstance];
-    if (idleCoordinator && [idleCoordinator respondsToSelector:@selector(resetIdleTimer)]) {
-        [idleCoordinator resetIdleTimer];
-    }
     [[AXNManager sharedInstance] revealNotificationHistory:YES];
 
-    if (self.collectionViewLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
-        if([[AXNManager sharedInstance].clvc respondsToSelector:@selector(collectionView)]) {
-            UIScrollView *cv = [[AXNManager sharedInstance].clvc performSelector:@selector(collectionView)];
-            if (cv && [cv respondsToSelector:@selector(_scrollToTopIfPossible:)]) {
-                [cv performSelector:@selector(_scrollToTopIfPossible:) withObject:@(YES)];
-            }
-        }
-    }
+    // Note: Removed SBIdleTimerGlobalCoordinator and _scrollToTopIfPossible to avoid iOS 16.6 compatibility crashes
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
