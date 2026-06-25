@@ -1,0 +1,31 @@
+[1;31m> [1;3;39mMaking all in Tweak…[m
+[1;31m> [1;3;39mMaking all for tweak Axon…[m
+[0;31m==> [1;39mPreprocessing Tweak.xm…[m
+[0;31m==> [1;39mPreprocessing Tweak.xm…[m
+[0;32m==> [1;39mCompiling AXNRequestWrapper.m (arm64e)…[m
+[0;32m==> [1;39mCompiling AXNManager.m (arm64e)…[m
+[1mAXNManager.m:109:23: [0m[0;1;31merror: [0m[1mincompatible pointer types assigning to 'SBIconModel *' from 'NSString *' [-Werror,-Wincompatible-pointer-types][0m
+                model = [iconController model];
+[0;1;32m                      ^ ~~~~~~~~~~~~~~~~~~~~~~
+[0m1 error generated.
+make[4]: *** [/home/runner/theos/makefiles/instance/rules.mk:304: /home/runner/work/axonnn/axonnn/.theos/obj/arm64e/AXNManager.m.0828bf65.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+[0;32m==> [1;39mCompiling AXNRequestWrapper.m (arm64)…[m
+[0;32m==> [1;39mCompiling AXNManager.m (arm64)…[m
+[1mAXNManager.m:109:23: [0m[0;1;31merror: [0m[1mincompatible pointer types assigning to 'SBIconModel *' from 'NSString *' [-Werror,-Wincompatible-pointer-types][0m
+                model = [iconController model];
+[0;1;32m                      ^ ~~~~~~~~~~~~~~~~~~~~~~
+[0m1 error generated.
+make[4]: *** [/home/runner/theos/makefiles/instance/rules.mk:305: /home/runner/work/axonnn/axonnn/.theos/obj/arm64/AXNManager.m.ea84373a.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+[0;32m==> [1;39mCompiling AXNView.m (arm64)…[m
+[0;32m==> [1;39mCompiling AXNAppCell.m (arm64)…[m
+rm /home/runner/work/axonnn/axonnn/.theos/obj/arm64/Tweak.xm.mm
+make[3]: *** [/home/runner/theos/makefiles/instance/library.mk:52: /home/runner/work/axonnn/axonnn/.theos/obj/arm64/Axon.dylib] Error 2
+make[3]: *** Waiting for unfinished jobs....
+[0;32m==> [1;39mCompiling AXNAppCell.m (arm64e)…[m
+rm /home/runner/work/axonnn/axonnn/.theos/obj/arm64e/Tweak.xm.mm
+make[3]: *** [/home/runner/theos/makefiles/instance/library.mk:52: /home/runner/work/axonnn/axonnn/.theos/obj/arm64e/Axon.dylib] Error 2
+make[2]: *** [/home/runner/theos/makefiles/instance/library.mk:37: internal-library-all_] Error 2
+make[1]: *** [/home/runner/theos/makefiles/master/rules.mk:146: Axon.all.tweak.variables] Error 2
+make: *** [/home/runner/theos/makefiles/master/aggregate.mk:12: internal-all] Error 2

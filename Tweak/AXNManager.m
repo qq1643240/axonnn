@@ -94,7 +94,7 @@
 -(UIImage *)getIcon:(NSString *)bundleIdentifier {
     if (self.iconStore[bundleIdentifier]) return self.iconStore[bundleIdentifier];
     UIImage *image = nil;
-    SBIconModel *model = nil;
+    id iconModel = nil;
 
     Class iconControllerClass = NSClassFromString(@"SBIconController");
     if (iconControllerClass) {
@@ -103,16 +103,20 @@
             if ([iconController respondsToSelector:@selector(homescreenIconViewMap)]) {
                 id viewMap = [iconController homescreenIconViewMap];
                 if (viewMap && [viewMap respondsToSelector:@selector(iconModel)]) {
-                    model = [viewMap iconModel];
+                    iconModel = [viewMap iconModel];
                 }
             } else if ([iconController respondsToSelector:@selector(model)]) {
-                model = [iconController model];
+                id model = [iconController model];
+                // Check if model is actually an SBIconModel
+                if (model && [model respondsToSelector:@selector(applicationIconForBundleIdentifier:)]) {
+                    iconModel = model;
+                }
             }
         }
     }
 
-    if (model) {
-        SBIcon *icon = [model applicationIconForBundleIdentifier:bundleIdentifier];
+    if (iconModel) {
+        SBIcon *icon = [iconModel applicationIconForBundleIdentifier:bundleIdentifier];
         if (icon) {
             if ([icon respondsToSelector:@selector(getIconImage:)]) {
                 image = [icon getIconImage:2];
@@ -133,8 +137,8 @@
         }
     }
 
-    if (!image && model) {
-        SBIcon *icon = [model applicationIconForBundleIdentifier:@"com.apple.Preferences"];
+    if (!image && iconModel) {
+        SBIcon *icon = [iconModel applicationIconForBundleIdentifier:@"com.apple.Preferences"];
         if (icon) {
             if ([icon respondsToSelector:@selector(getIconImage:)]) {
                 image = [icon getIconImage:2];
