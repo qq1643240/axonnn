@@ -10,10 +10,18 @@ UIView *getBlurView(CGRect frame) {
     NSInteger darkModeTmp = [prefs[@"DarkMode"] intValue] ?: 0;
     UIView *blurView;
     if(darkModeTmp == 0) {
-        id materialView = objc_getClass("MTMaterialView");
-        if([materialView respondsToSelector:@selector(materialViewWithRecipe:options:)]) blurView = [materialView materialViewWithRecipe:MTMaterialRecipeNotifications options:MTMaterialOptionsBlur];
-        else blurView = [materialView materialViewWithRecipe:MTMaterialRecipeNotifications configuration:1];
-        blurView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.45];
+        Class materialViewClass = objc_getClass("MTMaterialView");
+        if(materialViewClass && [materialViewClass respondsToSelector:@selector(materialViewWithRecipe:options:)]) {
+            blurView = [materialViewClass materialViewWithRecipe:MTMaterialRecipeNotifications options:MTMaterialOptionsBlur];
+        } else if(materialViewClass && [materialViewClass respondsToSelector:@selector(materialViewWithRecipe:configuration:)]) {
+            blurView = [materialViewClass materialViewWithRecipe:MTMaterialRecipeNotifications configuration:1];
+        } else {
+            // Fallback if MTMaterialView is not available
+            blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+        }
+        if (blurView && [blurView isKindOfClass:[UIView class]]) {
+            blurView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.45];
+        }
     } else if(darkModeTmp == 1) {
         blurView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
     } else if(darkModeTmp == 2) {
@@ -28,14 +36,21 @@ UIView *getBlurView(CGRect frame) {
     _style = -1;
 
     // for some unknown reason AXNView isn't able to set badgesEnabled, so i'm loading it from the preferences
-    prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/me.nepeta.axon.plist"];
+    // Try rootless/roothide path first, fallback to rootful
+    NSString *prefsPath = @"/var/jb/Library/Preferences/me.nepeta.axon.plist";
+    if (![[NSFileManager defaultManager] fileExistsAtPath:prefsPath]) {
+        prefsPath = @"/var/mobile/Library/Preferences/me.nepeta.axon.plist";
+    }
+    prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:prefsPath];
     self.badgesEnabled = prefs[@"BadgesEnabled"] != nil ? [prefs[@"BadgesEnabled"] boolValue] : true;
 
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMenu:)];
     [self addGestureRecognizer:recognizer];
 
     self.layer.cornerRadius = 13;
-    self.layer.continuousCorners = YES;
+    if ([self.layer respondsToSelector:@selector(setContinuousCorners:)]) {
+        self.layer.continuousCorners = YES;
+    }
     self.layer.masksToBounds = YES;
 
     self.iconView = [[UIImageView alloc] initWithFrame:frame];

@@ -32,7 +32,12 @@
   for(NSArray *value in [self.notificationRequests allValues]) {
     for(AXNRequestWrapper *req in value) [array addObject:req.request];
   }
-  [[array description] writeToFile:@"/var/mobile/Documents/AxonDebug.txt" atomically:false encoding:NSUTF8StringEncoding error:nil];
+  // Try rootless/roothide path first, fallback to rootful
+  NSString *docsPath = @"/var/jb/Library/Documents/";
+  if (![[NSFileManager defaultManager] fileExistsAtPath:docsPath]) {
+      docsPath = @"/var/mobile/Documents/";
+  }
+  [[array description] writeToFile:[docsPath stringByAppendingPathComponent:@"AxonDebug.txt"] atomically:false encoding:NSUTF8StringEncoding error:nil];
 }
 
 -(void)getRidOfWaste {
@@ -88,19 +93,36 @@
 
 -(UIImage *)getIcon:(NSString *)bundleIdentifier {
     if (self.iconStore[bundleIdentifier]) return self.iconStore[bundleIdentifier];
-    UIImage *image;
-    SBIconModel *model;
+    UIImage *image = nil;
+    SBIconModel *model = nil;
 
-    SBIconController *iconController = [NSClassFromString(@"SBIconController") sharedInstance];
+    Class iconControllerClass = NSClassFromString(@"SBIconController");
+    if (iconControllerClass) {
+        id iconController = [iconControllerClass sharedInstance];
+        if (iconController) {
+            if ([iconController respondsToSelector:@selector(homescreenIconViewMap)]) {
+                id viewMap = [iconController homescreenIconViewMap];
+                if (viewMap && [viewMap respondsToSelector:@selector(iconModel)]) {
+                    model = [viewMap iconModel];
+                }
+            } else if ([iconController respondsToSelector:@selector(model)]) {
+                model = [iconController model];
+            }
+        }
+    }
 
-    if([iconController respondsToSelector:@selector(homescreenIconViewMap)]) model = [[iconController homescreenIconViewMap] iconModel];
-    else if([iconController respondsToSelector:@selector(model)]) model = [iconController model];
-    SBIcon *icon = [model applicationIconForBundleIdentifier:bundleIdentifier];
-    if([icon respondsToSelector:@selector(getIconImage:)]) image = [icon getIconImage:2];
-    else if([icon respondsToSelector:@selector(iconImageWithInfo:)]) image = [icon iconImageWithInfo:(struct SBIconImageInfo){60,60,2,0}];
+    if (model) {
+        SBIcon *icon = [model applicationIconForBundleIdentifier:bundleIdentifier];
+        if (icon) {
+            if ([icon respondsToSelector:@selector(getIconImage:)]) {
+                image = [icon getIconImage:2];
+            } else if ([icon respondsToSelector:@selector(iconImageWithInfo:)]) {
+                image = [icon iconImageWithInfo:(struct SBIconImageInfo){60,60,2,0}];
+            }
+        }
+    }
 
     if (!image) {
-      NSLog(@"[Axon] Image Not Founded!");
         NSArray *requests = [self requestsForBundleIdentifier:bundleIdentifier];
         for (int i = 0; i < [requests count]; i++) {
             NCNotificationRequest *request = requests[i];
@@ -112,13 +134,20 @@
     }
 
     if (!image && model) {
-        icon = [model applicationIconForBundleIdentifier:@"com.apple.Preferences"];
-        if([icon respondsToSelector:@selector(getIconImage:)]) image = [icon getIconImage:2];
-        else if([icon respondsToSelector:@selector(iconImageWithInfo:)]) image = [icon iconImageWithInfo:(struct SBIconImageInfo){60,60,2,0}];
+        SBIcon *icon = [model applicationIconForBundleIdentifier:@"com.apple.Preferences"];
+        if (icon) {
+            if ([icon respondsToSelector:@selector(getIconImage:)]) {
+                image = [icon getIconImage:2];
+            } else if ([icon respondsToSelector:@selector(iconImageWithInfo:)]) {
+                image = [icon iconImageWithInfo:(struct SBIconImageInfo){60,60,2,0}];
+            }
+        }
     }
 
-    if (!image) {
-        image = [UIImage _applicationIconImageForBundleIdentifier:bundleIdentifier format:0 scale:[UIScreen mainScreen].scale];
+    if (!image && NSClassFromString(@"UIImage")) {
+        if ([UIImage respondsToSelector:@selector(_applicationIconImageForBundleIdentifier:format:scale:)]) {
+            image = [UIImage _applicationIconImageForBundleIdentifier:bundleIdentifier format:0 scale:[UIScreen mainScreen].scale];
+        }
     }
 
     if (image) {
