@@ -50,7 +50,7 @@ jobs:
           echo "HOME=$HOME"
           ls -la $THEOS/
           make clean THEOS="$THEOS"
-          THEOS_PACKAGE_SCHEME=roothide make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
+          THEOS_PACKAGE_SCHEME=rootless make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
           echo "Build complete, listing all files:"
           echo "=== Current directory ===" 
           pwd
