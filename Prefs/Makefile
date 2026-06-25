@@ -8,7 +8,7 @@ $(BUNDLE_NAME)_FILES = Preferences.m AXNAppearanceSettings.m AXNListItemsControl
 $(BUNDLE_NAME)_INSTALL_PATH = /Library/PreferenceBundles
 $(BUNDLE_NAME)_FRAMEWORKS = UIKit
 $(BUNDLE_NAME)_PRIVATE_FRAMEWORKS = Preferences
-$(BUNDLE_NAME)_CFLAGS = -fobjc-arc -Wno-deprecated-declarations
+$(BUNDLE_NAME)_CFLAGS = -Wno-deprecated-declarations
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 
