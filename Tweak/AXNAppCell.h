@@ -1,3 +1,6 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface MPArtworkColorAnalyzer : NSObject
 - (void)analyzeWithCompletionHandler:(id /* block */)arg1;
 - (id)initWithImage:(id)arg1 algorithm:(long long)arg2;
