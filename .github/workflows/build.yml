@@ -46,10 +46,14 @@ jobs:
           
       - name: Build Package
         run: |
-          make clean
-          make package FINALPACKAGE=1 THEOS="$HOME/theos" 2>&1 | tee build.log
-          echo "Build complete, listing files:"
-          find . -name "*.deb" -type f
+          echo "THEOS=$THEOS"
+          echo "HOME=$HOME"
+          ls -la $THEOS/
+          make clean THEOS="$THEOS"
+          make package FINALPACKAGE=1 THEOS="$THEOS" 2>&1 | tee build.log
+          echo "Build complete, listing all files:"
+          find . -name "*.deb" -type f 2>/dev/null
+          find $THEOS -name "*.deb" -type f 2>/dev/null
           ls -la packages/ 2>/dev/null || echo "packages directory not found"
           ls -la .theos/packages/ 2>/dev/null || echo ".theos/packages directory not found"
           
