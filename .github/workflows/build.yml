@@ -61,9 +61,10 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v1.5-build
-          name: Axon v1.5 Build
+          tag_name: v1.5-build-${{ github.run_number }}
+          name: Axon v1.5 Build #${{ github.run_number }}
           body: Automated build from commit ${{ github.sha }}
           files: packages/*.deb
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
