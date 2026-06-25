@@ -26,12 +26,12 @@ jobs:
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
           
-      - name: Install iOS SDK 16.2
+      - name: Install iOS SDK
         run: |
           cd $THEOS/sdks
-          curl -LO https://github.com/theos/sdks/releases/download/16.2/iOS16.2.sdk.tar.xz
-          tar -xf iOS16.2.sdk.tar.xz
-          rm iOS16.2.sdk.tar.xz
+          curl -LO https://github.com/theos/sdks/releases/download/15.5/iOS15.5.sdk.tar.xz
+          tar -xf iOS15.5.sdk.tar.xz
+          rm iOS15.5.sdk.tar.xz
           ls -la
           
       - name: Build Package
